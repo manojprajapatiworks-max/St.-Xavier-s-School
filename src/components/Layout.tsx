@@ -39,9 +39,13 @@ export default function Layout() {
           <div className="flex justify-between h-20">
             <div className="flex items-center">
               <Link to="/" className="flex items-center space-x-3">
-                <div className="bg-indigo-600 p-2 rounded-lg">
-                  <GraduationCap className="h-8 w-8 text-white" />
-                </div>
+                {settings.logo_url ? (
+                  <img src={settings.logo_url} alt="School Logo" className="h-12 w-auto object-contain" />
+                ) : (
+                  <div className="bg-indigo-600 p-2 rounded-lg">
+                    <GraduationCap className="h-8 w-8 text-white" />
+                  </div>
+                )}
                 <div>
                   <h1 className="text-2xl font-bold text-gray-900 leading-none">St. Xavier's School</h1>
                   <p className="text-sm text-indigo-600 font-medium">Newadhiya, Jaunpur</p>
@@ -112,7 +116,11 @@ export default function Layout() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             <div>
               <div className="flex items-center space-x-3 mb-4">
-                <GraduationCap className="h-8 w-8 text-indigo-400" />
+                {settings.logo_url ? (
+                  <img src={settings.logo_url} alt="School Logo" className="h-10 w-auto object-contain bg-white/10 rounded-lg p-1" />
+                ) : (
+                  <GraduationCap className="h-8 w-8 text-indigo-400" />
+                )}
                 <h2 className="text-xl font-bold">St. Xavier's School</h2>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed">

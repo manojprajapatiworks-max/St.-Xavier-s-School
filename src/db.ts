@@ -73,11 +73,18 @@ if (!settingsExist) {
     ['about_text', "St. Xavier's School is committed to providing a holistic education that nurtures the intellectual, physical, and moral growth of every student."],
     ['contact_email', 'info@stxaviersnewadhiya.edu'],
     ['contact_phone', '+91 98765 43210'],
-    ['address', 'Newadhiya, Jaunpur, Uttar Pradesh, India']
+    ['address', 'Newadhiya, Jaunpur, Uttar Pradesh, India'],
+    ['logo_url', '']
   ];
   const insertSetting = db.prepare('INSERT INTO site_settings (key, value) VALUES (?, ?)');
   for (const [key, value] of defaultSettings) {
     insertSetting.run(key, value);
+  }
+} else {
+  // Ensure logo_url exists for existing databases
+  const logoUrlExists = db.prepare("SELECT key FROM site_settings WHERE key = 'logo_url'").get();
+  if (!logoUrlExists) {
+    db.prepare('INSERT INTO site_settings (key, value) VALUES (?, ?)').run('logo_url', '');
   }
 }
 
